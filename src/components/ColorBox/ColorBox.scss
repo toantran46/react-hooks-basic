@@ -1,0 +1,10 @@
+.box-color{
+    $box-color: 200px;
+
+    display: inline-block;
+    width: $box-color;
+    height: $box-color;
+    border-radius: 5px;
+
+    transition: all .2s ease-in-out;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ColorBox.scss' 
 
 function getRandomColor (){
     const LIST_COLOR = ['deeppink', 'green', 'yellow', 'black', 'blue'];
@@ -8,9 +9,9 @@ function getRandomColor (){
 
 function ColorBox() {
     const [color,setColor] = useState(() =>{
-    const initColor = localStorage.getItem('box_color') || 'deeppink';
-    console.log(initColor);
-    return initColor;
+        const initColor = localStorage.getItem('box_color') || 'deeppink';
+       // console.log(initColor);
+        return initColor;
     });
     function handleGetColor(){
         const newColor = getRandomColor();
