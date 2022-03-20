@@ -6,6 +6,8 @@ import Pagination from './components/Pagination';
 import PostList from './components/PostList';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import SearchBox from './components/SearchBox';
+import Clock from './components/Clock';
 
 function App() {
     const [todoList, setTodoList] = useState([
@@ -23,6 +25,7 @@ function App() {
     const [filters, setFilters] = useState({
         _limit: 10,
         _page: 1,
+        title_like: 'quis',
     });
 
     try {
@@ -46,7 +49,7 @@ function App() {
     }
 
     function handlePageChange(newPage) {
-        console.log('new page', newPage);
+        // console.log('new page', newPage);
         setFilters({
             ...filters,
             _page: newPage,
@@ -72,17 +75,31 @@ function App() {
         setTodoList(newTodoList);
     }
 
+    function handleSearchBoxChange(newsFilters) {
+        console.log("New filters", newsFilters);
+        setFilters({
+            ...filters,
+            _page: 1,
+            title_like: newsFilters.searchTerm,
+        });
+    }
+    const [showClock, setShowClock] = useState(true);
+
     return (
         <div className='app' >
-            <h1>React Hooks - Todo List - Post List</h1>
+            <h1>React Hooks - Todo List - Post List - SearchBox - Clock</h1>
+
+            {showClock && < Clock />}
+            <button onClick={() => setShowClock(false)}>Hide</button>
+            {/* {<SearchBox onSubmit={handleSearchBoxChange} />}
             {<PostList posts={postList} />}
             {<Pagination
                 pagination={pagination}
                 onPageChange={handlePageChange}
-            />}
-            {<ColorBox />}
-            {<TodoForm onSubmit={handleFormSubmit} />}
-            {<TodoList todos={todoList} onTodoClick={handleTodoClick} />}
+            />} */}
+            {/* {<ColorBox />} */}
+            {/* {<TodoForm onSubmit={handleFormSubmit} />} */}
+            {/* {<TodoList todos={todoList} onTodoClick={handleTodoClick} />} */}
         </div>
     );
 }
